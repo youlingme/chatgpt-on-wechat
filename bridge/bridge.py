@@ -20,12 +20,13 @@ class Bridge(object):
             "translate": conf().get("translate", "baidu"),
         }
         model_type = conf().get("model")
-        if model_type in ["text-davinci-003"]:
-            self.btype["chat"] = const.OPEN_AI
-        if conf().get("use_azure_chatgpt", False):
-            self.btype["chat"] = const.CHATGPTONAZURE
-        if conf().get("use_linkai") and conf().get("linkai_api_key"):
-            self.btype["chat"] = const.LINKAI
+        self.btype["chat"] = const.OPEN_AI
+#         if model_type in ["text-davinci-003"]:
+#             self.btype["chat"] = const.OPEN_AI
+#         if conf().get("use_azure_chatgpt", False):
+#             self.btype["chat"] = const.CHATGPTONAZURE
+#         if conf().get("use_linkai") and conf().get("linkai_api_key"):
+#             self.btype["chat"] = const.LINKAI
         self.bots = {}
 
     def get_bot(self, typename):
