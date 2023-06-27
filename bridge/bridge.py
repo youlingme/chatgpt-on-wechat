@@ -13,7 +13,8 @@ from voice.factory import create_voice
 class Bridge(object):
     def __init__(self):
         self.btype = {
-            "chat": const.CHATGPT,
+#             "chat": const.CHATGPT,
+            "chat": const.OPEN_AI,
             "voice_to_text": conf().get("voice_to_text", "openai"),
             "text_to_voice": conf().get("text_to_voice", "google"),
             "translate": conf().get("translate", "baidu"),
