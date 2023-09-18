@@ -27,8 +27,6 @@ class Bridge(object):
             self.btype["chat"] = const.CHATGPTONAZURE
         if conf().get("use_linkai") and conf().get("linkai_api_key"):
             self.btype["chat"] = const.LINKAI
-        self.bots = {}
-
     def get_bot(self, typename):
         if self.bots.get(typename) is None:
             logger.info("wanghan create bot {} for {}".format(self.btype[typename], typename))
