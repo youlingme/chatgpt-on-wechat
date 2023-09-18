@@ -85,6 +85,7 @@ class OpenAIBot(Bot, OpenAIImage):
         try:
             response = openai.Completion.create(prompt=str(session), **self.args)
             res_content = response.choices[0]["text"].strip().replace("<|endoftext|>", "")
+            logger.info("[OPEN_AI] response={}".format(response))
             total_tokens = response["usage"]["total_tokens"]
             completion_tokens = response["usage"]["completion_tokens"]
             logger.info("[OPEN_AI] reply={}".format(res_content))
@@ -120,3 +121,4 @@ class OpenAIBot(Bot, OpenAIImage):
                 return self.reply_text(session, retry_count + 1)
             else:
                 return result
+

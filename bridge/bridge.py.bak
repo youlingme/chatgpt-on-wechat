@@ -14,13 +14,11 @@ class Bridge(object):
     def __init__(self):
         self.btype = {
             "chat": const.CHATGPT,
-#             "chat": const.OPEN_AI,
             "voice_to_text": conf().get("voice_to_text", "openai"),
             "text_to_voice": conf().get("text_to_voice", "google"),
             "translate": conf().get("translate", "baidu"),
         }
         model_type = conf().get("model")
-#         self.btype["chat"] = const.OPEN_AI
         if model_type in ["text-davinci-003"]:
             self.btype["chat"] = const.OPEN_AI
         if conf().get("use_azure_chatgpt", False):
@@ -31,7 +29,7 @@ class Bridge(object):
 
     def get_bot(self, typename):
         if self.bots.get(typename) is None:
-            logger.info("wanghan create bot {} for {}".format(self.btype[typename], typename))
+            logger.info("create bot {} for {}".format(self.btype[typename], typename))
             if typename == "text_to_voice":
                 self.bots[typename] = create_voice(self.btype[typename])
             elif typename == "voice_to_text":
@@ -56,4 +54,3 @@ class Bridge(object):
 
     def fetch_translate(self, text, from_lang="", to_lang="en") -> Reply:
         return self.get_bot("translate").translate(text, from_lang, to_lang)
-
